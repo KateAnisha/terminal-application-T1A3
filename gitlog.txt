@@ -1,0 +1,11 @@
+commit 9f8a314cf9556549c94d74077a767c7d9d44db37
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sat Apr 3 11:36:14 2021 +1000
+
+    install gem file CSV
+
+commit 6469ac118ef00f9aefa6e2ad3a63f7af481ec3e2
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 2 17:35:35 2021 +1000
+
+    Create main Ruby file and begin assignment
