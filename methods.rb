@@ -1,24 +1,26 @@
 
-# NEW USER
-# look through profiles array for users profile name. 
-# If the profile is found, return profile taken
-# Else add profile to ARRAY of profiles. 
 
-def new_profile()
-    puts "Welcome, please enter a profile name. This will then become the name you use to view your profile."
-    profile_name = gets.chomp.downcase
-end
-def find_profile?(profile_name)
-    profiles = ["kate"]
-    profiles.each do |profile|
-        if profile == profile_name
-            puts "Sorry that profile name is taken, please choose another."
-        elsif profile != profile_name
-            profiles << profile_name.push
-            puts "Welcome #{profile_name}."
-            print profiles
-        end
+def savings_projection_calculator()
+    
+    puts "How much money would you like to save?"
+    savings_goal = gets.chomp.to_i
+    puts "how much money can you contribute to your goal?"
+    contribution_amount = gets.chomp.to_i
+    puts "how often can you contribute $#{savings_goal} to your goal? weekly, fortnightly or monthly?"
+    contribution_duration = gets.chomp.downcase
+    if contribution_duration == "weekly"
+        goal_duration = savings_goal / contribution_amount * 1
+        puts "It will take you #{goal_duration} weeks to save $#{savings_goal}.00"
+    elsif contribution_duration == "fortnightly"
+        goal_duration = savings_goal / contribution_amount * 2
+        puts "It will take you #{goal_duration} weeks to save $#{savings_goal}.00"
+    elsif contribution_duration == "monthly"
+        goal_duration = savings_goal / contribution_amount
+        puts "It will take you #{goal_duration} months to save $#{savings_goal}.00"
+        
     end
+    
 end
+
 
 

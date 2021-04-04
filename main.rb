@@ -1,6 +1,7 @@
-require_relative "classes/finance"
+require_relative 'classes/finance'
 require_relative "methods"
 require 'csv'
+require 'colorize'
 
 # Welcome message
 def separator(character="_")
@@ -11,59 +12,44 @@ puts "\n \t \t \t Welcome to Pennyful ! \n"
 separator()
 puts "Pennyful is an application to help you track expenses and create savings goals. \n"
 puts "Lets get started! \n \n"
-puts "You can create a profile or choose an existing one. "
-puts "Please enter one of the following options:" 
-puts "> Profile" 
-puts "> New user"
-
-# Until user chooses leave
-
-leave = false
-done = false
-=begin
-until leave
-    until done
-        input = gets.chomp.downcase
-        if input == "new user"
-            profile_name = new_profile()
-            profile_taken = find_profile?(profile_name)
-        elsif input == "profile"
-        end
-        done = true
-    end
-    leave = true
-    #     puts "Thank you for using Pennyful! Have a nice day."
-end
-
-=end
-
-# Menu items
 puts "What would you like to do?" 
-puts "Please enter the item number that corresponds with the menu option."
-puts "1. Enter income"
+puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
+puts "1. Set up categories"
 puts "2. Record expenditure"
 puts "3. View savings"
 puts "4. Savings projection calculator"
 puts "5. Export to excel"
 
-input = gets.chomp.to_i
-case input
-when "exit"
-    leave = true
+leave = false
+until leave
+    input = gets.chomp.to_i
+    case input
+    when 1
+        puts "To begin, enter a custom category."
+        user_category = custom_categories()
+        puts "Category has been created"
 
-when 1
-    puts "Please enter your income"
+    when 2
+        puts "Please enter your expenses"
 
-when 2
-    puts "Please enter your expenses"
+    when 3
+        puts "Please enter your savings"
 
-when 3
-    puts "Please enter your savings"
+    when 4
+        separator()
+        puts "\n \t \t \t Savings calculator"
+        separator()
+        puts "\n "
+        puts "If you are saving for a specific amount of money, this calculator will assist you in determining how long it will take you to reach your goal"
+        run_calculator = savings_projection_calculator()
+        puts "Press enter to continue"
+        gets.chomp 
+    when 5
+        puts "Export to excel"
 
-when 4
-    puts "Savings calculator"
+    when "leave"
+        leave = true
 
-when 5
-    puts "Export to excel"
-
+    end
 end
+   
