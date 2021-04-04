@@ -1,7 +1,6 @@
 
 
 def savings_projection_calculator()
-    
     puts "How much money would you like to save?"
     savings_goal = gets.chomp.to_i
     puts "how much money can you contribute to your goal?"
@@ -17,9 +16,7 @@ def savings_projection_calculator()
     elsif contribution_duration == "monthly"
         goal_duration = savings_goal / contribution_amount
         puts "It will take you #{goal_duration} months to save $#{savings_goal}.00"
-        
     end
-    
 end
 
 

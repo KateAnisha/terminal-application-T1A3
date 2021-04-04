@@ -1,5 +1,5 @@
 require_relative 'classes/finance'
-require_relative "methods"
+require_relative 'methods'
 require 'csv'
 require 'colorize'
 
@@ -34,6 +34,8 @@ until leave
 
     when 3
         puts "Please enter your savings"
+      
+        savings_name = savings(savings_name)
 
     when 4
         separator()
@@ -41,15 +43,17 @@ until leave
         separator()
         puts "\n "
         puts "If you are saving for a specific amount of money, this calculator will assist you in determining how long it will take you to reach your goal"
-        run_calculator = savings_projection_calculator()
-        puts "Press enter to continue"
-        gets.chomp 
+        until input == " "
+            run_calculator = savings_projection_calculator()
+            puts "If you are finished, enter done. If you want to run the calculator again, press enter to continue"
+            input = gets.chomp 
+        end
+        
     when 5
         puts "Export to excel"
 
-    when "leave"
-        leave = true
-
+    when input == "leave"
     end
+    leave = true
 end
    

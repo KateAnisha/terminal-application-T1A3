@@ -3,6 +3,8 @@ class Finances
         @name = name
         @category_name = []
         @transactions = []
+        @savings_account_name = savings_account_name
+        @savings = []
     end
 
     def custom_categories(category_name)
@@ -15,10 +17,21 @@ class Finances
     def add_expenses(description, amount)
         @transactions.push(description: description, amount: amount)
     end
-end
 
-# category = Finances.new()
-# category.custom_categories("Food")
+    def saving(savings_name)
+        @savings << savings_amount
+        puts "Please enter a name for your savings account."
+        puts "This can be anything you like"
+        @savings_account_name = gets.chomp.downcase
+        savings_ammount = gets.chomp.to_i
+    end
+
+        # Set empty array
+        # Get users name for savings a/c and push to array
+        # Get users input for initial savings amount. 
+        # Deduct savings from income a/c ?
+        # Display balance to user.
+end
 
 
 
