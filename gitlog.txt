@@ -1,3 +1,21 @@
+commit 75330ad2fe8c0f4cd1ac02ae8e2c1d71bba856c3
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sun Apr 4 19:00:10 2021 +1000
+
+    set up savings method
+
+commit 523a9b0ba36b2aec98709c86d3fabbe7f47f4b98
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sun Apr 4 14:14:23 2021 +1000
+
+    modify main.rb and set up custom categories classes
+
+commit 2a1d3b62491410a2f7f668d06f78793a5ff1e528
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sat Apr 3 20:00:12 2021 +1000
+
+    modifications to main menu and set up sub-menu
+
 commit 9f8a314cf9556549c94d74077a767c7d9d44db37
 Author: kate.anisha <kate.anisha@icloud.com>
 Date:   Sat Apr 3 11:36:14 2021 +1000

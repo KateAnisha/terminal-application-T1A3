@@ -14,7 +14,7 @@ puts "Pennyful is an application to help you track expenses and create savings g
 puts "Lets get started! \n \n"
 puts "What would you like to do?" 
 puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
-puts "1. Set up categories"
+puts "1. Set up expense categories"
 puts "2. Record expenditure"
 puts "3. View savings"
 puts "4. Savings projection calculator"
