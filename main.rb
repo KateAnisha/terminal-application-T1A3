@@ -1,31 +1,58 @@
+require 'csv'
+require 'colorize'
 
-puts "Welcome to Pennful. "
-puts "To get started, enter your name"
-
-user = {username: ""}
 user = {
-    username: "Kate", income: 500, savings: []
-    
+    username: "", income: 0, savings: [],
     }
 
-account_name = gets.chomp.downcase
+puts "Welcome to Pennful. "
+puts "please choose from the following"
+puts "> New profile"
+puts "> Existing profile"
+
+
+puts "Please enter a name. You will use this name to access your accounts."
+account_name = gets.chomp
 user[:username] << account_name
 
+puts "Hi #{account_name}."
+puts "We have set you up with an income account. This is where you will enter any earnings such as wages."
+puts "To get started, please enter your salary."
+# Get users salary 
+# Push users salary to user hash with key called income. 
+salary = gets.chomp.to_i
+user[:income] << salary
 
+# Set up users custom savings goal
+puts "Create a custom savings goal. The savings goal can be anything you like for example deposit on a house, a holiday or a car."
+savings_goal_name = gets.chomp
 
-# Ask user what name is
-# Get name
+# Get users savings goal amount
+puts "Now enter an amount you'd like to contribute. Simply enter 0 if you do not want to contribute any funds just yet. You can also come back to this at a later stage."
+savings_contribution = gets.chomp.to_i
+user[:savings] << savings_goal_name
+user[:savings] << savings_contribution
+p user
+# user[:savings] << {savings_goal: "Car", balance: 3000}
+
 # Make hash with layout (name and balance) 
 # Value of name will be what they type in
 
+
+# how to find user
+# index = user[:username].find_index {|element| element[:name] == input}
+
+
+
+# pushing users hash with savings goal and balance to the user hash. Pushing into the key of the savings hash called savings.
 user[:savings] << {savings_goal: "Holiday", balance: 500}
 user[:savings] << {savings_goal: "House", balance: 10000}
-user[:savings] << {savings_goal: "Car", balance: 3000}
 p user
 input = "Car"
 
-# Find
-index = user[:savings].find_index {|element| element[:name] == input}
+# Find account
+# Create index (empty variable) then locates list of users & the savings key. Calls the find_index method on the hash. 
+index = user[:savings].find_index {|element| element[:savings_goal] == input}
 user[:savings][index][:balance] -= 50
 # p result
 
