@@ -45,7 +45,7 @@ class Finances
                 puts "You have just contributed $#{savings_contribution_amount}.00 to your savings"
                 @savings << savings_contribution_amount
             elsif answer == "n"
-                
+
             end
             
         when 2
@@ -71,8 +71,8 @@ class Finances
         # Display balance to user.
 end
 
-account = Finances.new
-account.savings("new car")
+# account = Finances.new
+# account.savings("new car")
 
 
 

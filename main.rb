@@ -1,25 +1,42 @@
-require_relative 'classes/finance'
-require_relative 'methods'
-require 'csv'
-require 'colorize'
 
-# Welcome message
-def separator(character="_")
-    puts character * 76
-end
-separator()
-puts "\n \t \t \t Welcome to Pennyful ! \n"
-separator()
-puts "Pennyful is an application to help you track expenses and create savings goals. \n"
-puts "Lets get started! \n \n"
-puts "What would you like to do?" 
-puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
-puts "1. Set up expense categories"
-puts "2. Record expenditure"
-puts "3. View savings"
-puts "4. Savings projection calculator"
-puts "5. Export to excel"
+puts "Welcome to Pennful. "
+puts "To get started, enter your name"
 
+user = {username: ""}
+user = {
+    username: "Kate", income: 500, savings: []
+    
+    }
+
+account_name = gets.chomp.downcase
+user[:username] << account_name
+
+
+
+# Ask user what name is
+# Get name
+# Make hash with layout (name and balance) 
+# Value of name will be what they type in
+
+user[:savings] << {savings_goal: "Holiday", balance: 500}
+user[:savings] << {savings_goal: "House", balance: 10000}
+user[:savings] << {savings_goal: "Car", balance: 3000}
+p user
+input = "Car"
+
+# Find
+index = user[:savings].find_index {|element| element[:name] == input}
+user[:savings][index][:balance] -= 50
+# p result
+
+# # Transfer incocme to savings a/c
+# result[:balance] -= 50
+p user
+# p result
+
+
+
+=begin
 leave = false
 until leave
     input = gets.chomp.to_i
@@ -56,4 +73,6 @@ until leave
     end
     leave = true
 end
+
+=end
    
