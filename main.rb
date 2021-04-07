@@ -19,23 +19,27 @@ until leave
             puts "Please enter a name. You will use this name to access your accounts."
             profile_name = gets.chomp
             user[:username] = profile_name 
-            CSV.open("profiles.csv", "w") do |csv|
-                csv << [user[:username]]
-              end
-            
-            # Add username to CSV
-            p user
+            CSV.open("profiles.csv", "a") { |csv| csv << [user[:username]]}
         elsif input == "login"
             # Check CSV  input
             # Log user in
-        
+            puts "What is your profile name?"
+            profile_name = gets.chomp
+            CSV.open("users.csv", "a+")  do |csv|
+                csv.each do |find_profile|
+                    if find_profile[0] == profile_name
+                        puts "You are logged in"
+                    end
+                end
+                return false
+            end
         end
     end
     loggedin = true
 end
 
-=begin
-puts "What would you like to do now?" 
+
+    puts "What would you like to do now?" 
     puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
     puts "1. Set up income and expense accounts"
     puts "2. Record expenditure"
@@ -67,15 +71,9 @@ puts "What would you like to do now?"
         puts "1. New Savings Goal"
         puts "2. View savings"
         puts "3. Contribute to savings"
+        puts "4. Main Menu"
 
-        puts "Create a custom savings goal. The savings goal can be anything you like for example deposit on a house, a holiday or a car."
-        savings_goal_name = gets.chomp
-
-        # Get users savings goal amount
-        puts "Now enter an amount you'd like to contribute. Simply enter 0 if you do not want to contribute any funds just yet. You can also come back to this at a later stage."
-        savings_contribution = gets.chomp.to_f
-        user[:savings] << savings_goal_name
-        user[:savings] << savings_contribution
+      
         
     when 4
         separator()
@@ -91,7 +89,8 @@ puts "What would you like to do now?"
         
     when 5
         puts "Export to graph"
-=end
+    end
+
 
 
 =begin
