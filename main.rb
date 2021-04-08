@@ -3,7 +3,6 @@ require 'csv'
 # Ruby Gems used in file
 require 'colorize'
 require 'tty'
-require 'asciiart'
 
 profiles = CSV.open("profiles.csv", "r").read
 p profiles
