@@ -12,7 +12,7 @@ user = {
 until leave
     # loggedin = false
     # until loggedin == true
-    #     puts "Welcome to Pennful. "
+    #     puts "Welcome to Pennyful. "
     #     puts "Please choose from the following options:"
     #     puts "> New profile"
     #     puts "> Login"
@@ -71,34 +71,61 @@ until leave
     input = gets.chomp.to_i
     case input
     when 1
-        puts "1. Set up income and expense accounts"
-        puts "To begin, we have set you up with an income account."
-        puts "You can add your own custom accounts as well."
-        puts "How much would you like to deposit to your income account? This is where you will deposit any earnings such as salary."
-        salary = gets.chomp.to_f
-        puts "Awesome #{user[:username]}, you just contributed $#{salary} to your income account."
-        user[:income] += salary
-        user[:income] << salary
-        puts "Your income account is at $#{user[:income]}"
-    
+        until input == "d"
+        puts "What would you like to do?"
+        puts "a. Deposit to income account"
+        puts "b. Create accounts"
+        puts "c. View accounts"
+        puts "d. Back to main-menu."
+        input = gets.chomp
+            if input == "a"
+                puts "How much would you like to deposit to your income account? This is where you will deposit any earnings such as salary."
+                salary = gets.chomp.to_f
+                puts "Awesome #{user[:username]}, you just contributed $#{salary} to your income account."
+                user[:income] += salary
+                puts "Your income account balance is: $#{user[:income]}"
+            
+            elsif input == "b"
+                puts "Create custom accounts here."
+                puts "For example, you could create an account called food, bills or health."
+                puts "Any expenditure will go against these accounts."
+                # pushing users hash with savings goal and balance to the user hash. Pushing into the key of the savings hash called savings.
+                puts "Enter an account name"
+                custom_account = gets.chomp.downcase
+                user[:accounts] << custom_account
+                p user[:accounts]
+            elsif input == "c"
+                puts "You have the following accounts:"
+               
+            end
+        end
     when 2
         puts "Please enter your expenses"
     
     when 3
+        until input == "d"
         puts "Here you can manage your Pennyful! Savings."
         puts "What would you like to do?" 
-        puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
-        puts "1. New Savings Goal"
-        puts "2. View savings"
-        puts "3. Contribute to savings"
-        puts "4. Main Menu"
-    
+        puts "Please enter the item number that corresponds with the menu option. (a - d)"
+        puts "a. New Savings Goal"
+        puts "b. View savings"
+        puts "c. Contribute to savings"
+        puts "d. Main Menu"
+        input = gets.chomp.downcase
+            if input == "a"
+                puts "Set up a new savings goal"
+                run_savings_goal = new_savings_goal()
+            elsif input == "b"
+                puts "View savings goal"
+            elsif input == "c"
+                puts "Contribute to savings"
+            end
         # Find account
         # Create index (empty variable) then locates list of users & the savings key. Calls the find_index method on the hash. 
-        index = user[:savings].find_index {|element| element[:savings_goal] == input}
-        user[:savings][index][:balance] -= 50
+        # index = user[:savings].find_index {|element| element[:savings_goal] == input}
+        # user[:savings][index][:balance] -= 50
         # p result
-        
+        end
     when 4
         separator()
         puts "\n \t \t \t Savings calculator"
@@ -123,8 +150,6 @@ end
 
 
 =begin
-
-
 
 p user
 # user[:savings] << {savings_goal: "Car", balance: 3000}

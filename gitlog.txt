@@ -1,3 +1,21 @@
+commit 5cb4fc6cee36763d1987c60fa823e514b49c1ce6
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Thu Apr 8 14:28:09 2021 +1000
+
+    Progress user to next part of code after they have logged in now complete.
+
+commit 75c33ce5e66bb13acf20e3337d71f3b1494820dd
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Thu Apr 8 14:09:35 2021 +1000
+
+    Log in functionality finalised.
+
+commit 7bd00b0d44858126af11c95aee4f0d04ac0439da
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Thu Apr 8 13:40:41 2021 +1000
+
+    Update login functionality and progress to next part of application
+
 commit f6777fc841061666bb015f638df7c00f51a46344
 Author: kate.anisha <kate.anisha@icloud.com>
 Date:   Wed Apr 7 21:00:55 2021 +1000

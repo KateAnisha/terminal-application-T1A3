@@ -1,9 +1,5 @@
 def new_savings_goal
-    user = {
-        username: "", income: 0, accounts: [], savings: [],
-        }
     puts "Create a custom savings goal. The savings goal can be anything you like for example deposit on a house, a holiday or a car."
-    
     puts "Do you want to create a savings goal? (yes/no). If you choose no, you will return to the previous menu."
     savings_goal_name = " "
     input = gets.chomp.downcase
@@ -19,7 +15,6 @@ def new_savings_goal
     elsif input == "no"
         #return user to main menu
     end
-    
 end
 
 def contribute_to_savings_goal
