@@ -1,4 +1,1 @@
-username,income,accounts,savings
-user1,1000,account1|account2|account3,savings1|savings2|savings3
-user2,2000,account1|account2|account3,savings1|savings2|savings3
-user3,3000,account1|account2|account3,savings1|savings2|savings3
+user1,1000,foo^50|bar^100|biz^1,savings1|savings2|savings3

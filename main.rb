@@ -1,64 +1,78 @@
-require 'csv'
-# require 'colorize'
 require_relative 'methods'
+require 'csv'
+# Ruby Gems used in file
+require 'colorize'
+require 'tty'
+require 'asciiart'
+
 profiles = CSV.open("profiles.csv", "r").read
 p profiles
 
 leave = false
 user = {
-    username: "", income: 0, accounts: [], savings: [],
+    username: "user1", income: 500, accounts: [{name: "food", balance: 0}, {name: "bills", balance: 44.00}], savings: [],
     }
-    
+
+# Begin login/Profile creation
 until leave
-    # loggedin = false
-    # until loggedin == true
-    #     puts "Welcome to Pennyful. "
-    #     puts "Please choose from the following options:"
-    #     puts "> New profile"
-    #     puts "> Login"
-    #     # input = "new profile"
-    #     input = gets.chomp.downcase
-    #     if input == "new profile"
-    #         profile_is_available = false
-    #         until profile_is_available
-    #             puts "Please enter a name. You will use this name to access your accounts."
-    #             profile_name = gets.chomp
-    #             if profiles.find {|profile| profile[0] == profile_name}
-    #                 puts "that username is taken"
-    #             else 
-    #                 user[:username] = profile_name 
-    #                 user[:income] = 0 
-    #                 user[:accounts] = [] 
-    #                 user[:savings] = [] 
-    #                 profiles.push([user[:username],0,[],[]])
-    #                 profile_is_available = true
-    #                 loggedin = true
-    #             end
-    #         end
-    #         # If profile name already exists
-    #         # request user choose another name
+    loggedin = false
+    until loggedin == true
+#         a = AsciiArt.new("pennyful.png")
+#   => #<AsciiArt:0x007fa889cbacf8 @data="...">
+#         print a.to_ascii_art(width: 50)
+        puts "Welcome to Pennyful. "
+        puts "Please choose from the following options:"
+        puts "> New profile"
+        puts "> Login"
+        # input = "new profile"
+        input = gets.chomp.downcase
+        if input == "new profile"
+            profile_is_available = false
+            until profile_is_available
+                puts "Please enter a name. You will use this name to access your accounts."
+                profile_name = gets.chomp
+                if profiles.find {|profile| profile[0] == profile_name}
+                    puts "that username is taken"
+                else 
+                    user[:username] = profile_name 
+                    user[:income] = 0 
+                    user[:accounts] = [] 
+                    user[:savings] = [] 
+                    profiles.push([user[:username],0,[],[]])
+                    profile_is_available = true
+                    loggedin = true
+                end
+            end
+            # If profile name already exists
+            # request user choose another name
             
-    #     elsif input == "login"
-    #         # open CSV file
-    #         # Search for users name
-    #         # If match found, return logged in
-    #         # Else, tell user profile does not exist & get them to log in
-    #         puts "What is your profile name?"
-    #         profile_name = gets.chomp
-    #         # Find user in profiles
-    #         # Currernt user = values
-    #         found_user = profiles.find {|profile| profile[0] == profile_name}
-    #         if found_user
-    #             user[:username] = found_user[0]
-    #             user[:income] =  found_user[1].to_f
-    #             user[:accounts] =  found_user[2].split("|")
-    #             user[:savings] =  found_user[3].split("|")
-    #             loggedin = true
-    #         else
-    #             puts "Profile doesn't exist."
-    #         end
-    #     end
-    # end
+        elsif input == "login"
+            # open CSV file
+            # Search for users name
+            # If match found, return logged in
+            # Else, tell user profile does not exist & get them to log in
+            puts "What is your profile name?"
+            profile_name = gets.chomp
+            # Find user in profiles
+            # Currernt user = values
+            found_user = profiles.find {|profile| profile[0] == profile_name}
+            if found_user
+                user[:username] = found_user[0]
+                user[:income] =  found_user[1].to_f
+                accounts =  found_user[2].split("|")
+                accounts.each do |account|
+                    acc = account.split("^")
+                    user[:accounts].push({name: acc[0], balance:acc[1].to_f})
+                end
+                puts user[:accounts]
+                user[:savings] = found_user[3].split("|")
+                puts user[:accounts]
+                loggedin = true
+            else
+                puts "Profile doesn't exist."
+            end
+        end
+    end
     p user
     puts "What would you like to do now?" 
     puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
@@ -72,12 +86,12 @@ until leave
     case input
     when 1
         until input == "d"
-        puts "What would you like to do?"
-        puts "a. Deposit to income account"
-        puts "b. Create accounts"
-        puts "c. View accounts"
-        puts "d. Back to main-menu."
-        input = gets.chomp
+            puts "What would you like to do?"
+            puts "a. Deposit to income account"
+            puts "b. Create accounts"
+            puts "c. View accounts"
+            puts "d. Back to main-menu."
+            input = gets.chomp
             if input == "a"
                 puts "How much would you like to deposit to your income account? This is where you will deposit any earnings such as salary."
                 salary = gets.chomp.to_f
@@ -88,7 +102,7 @@ until leave
                 puts "Create custom accounts here."
                 puts "For example, you could create an account called food, bills or health."
                 puts "Any expenditure will go against these accounts."
-                # pushing users hash with savings goal and balance to the user hash. Pushing into the key of the savings hash called savings.
+                # Pushing users hash with savings goal and balance to the user hash. Pushing into the key of the savings hash called savings.
                 puts "Enter an account name"
                 custom_account = gets.chomp.downcase
                 user[:accounts] << custom_account
@@ -105,13 +119,22 @@ until leave
     when 2
         puts "You have the following accounts:"
         # List accounts
-        puts user[:accounts]
-        puts "What account would you like to enter expenses towards?"
-        input = gets.chomp.downcase
-        index = user[:accounts].find_index {|element| element[:custom_account] == input}
-        user[:accounts][index][:income] -= 50
-        p result
-    
+        if user[:accounts].empty? == false
+            puts user[:accounts]
+            puts "What account would you like to enter expenses towards?"
+            input = gets.chomp.downcase
+            puts "How much did you spend?"
+            expense_amount = gets.chomp.to_f
+            index = user[:accounts].find_index {|element| element[:name] == input}
+            user[:income] -= expense_amount # input from user
+            user[:accounts][index][:balance] += expense_amount
+            p user
+            gets
+        else
+            puts "You don't have any accounts to add expenses to"
+            puts "Press enter to return to main menu..."
+            gets.chomp
+        end
     when 3
         until input == "d"
         puts "Here you can manage your Pennyful! Savings."
@@ -152,6 +175,9 @@ until leave
         
     when 5
         puts "Export to graph"
+        data = user[:accounts].push({name: acc[0], balance:acc[1].to_f})
+        pie_chart = TTY::Pie.new(data: data, radius: 5)
+        
     when "exit"
         leave = true
     end
