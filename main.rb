@@ -10,55 +10,55 @@ user = {
     }
     
 until leave
-    loggedin = false
-    until loggedin == true
-        puts "Welcome to Pennful. "
-        puts "Please choose from the following options:"
-        puts "> New profile"
-        puts "> Login"
-        # input = "new profile"
-        input = gets.chomp.downcase
-        if input == "new profile"
-            profile_is_available = false
-            until profile_is_available
-                puts "Please enter a name. You will use this name to access your accounts."
-                profile_name = gets.chomp
-                if profiles.find {|profile| profile[0] == profile_name}
-                    puts "that username is taken"
-                else 
-                    user[:username] = profile_name 
-                    user[:income] = 0 
-                    user[:accounts] = [] 
-                    user[:savings] = [] 
-                    profiles.push([user[:username],0,[],[]])
-                    profile_is_available = true
-                    loggedin = true
-                end
-            end
-            # If profile name already exists
-            # request user choose another name
+    # loggedin = false
+    # until loggedin == true
+    #     puts "Welcome to Pennful. "
+    #     puts "Please choose from the following options:"
+    #     puts "> New profile"
+    #     puts "> Login"
+    #     # input = "new profile"
+    #     input = gets.chomp.downcase
+    #     if input == "new profile"
+    #         profile_is_available = false
+    #         until profile_is_available
+    #             puts "Please enter a name. You will use this name to access your accounts."
+    #             profile_name = gets.chomp
+    #             if profiles.find {|profile| profile[0] == profile_name}
+    #                 puts "that username is taken"
+    #             else 
+    #                 user[:username] = profile_name 
+    #                 user[:income] = 0 
+    #                 user[:accounts] = [] 
+    #                 user[:savings] = [] 
+    #                 profiles.push([user[:username],0,[],[]])
+    #                 profile_is_available = true
+    #                 loggedin = true
+    #             end
+    #         end
+    #         # If profile name already exists
+    #         # request user choose another name
             
-        elsif input == "login"
-            # open CSV file
-            # Search for users name
-            # If match found, return logged in
-            # Else, tell user profile does not exist & get them to log in
-            puts "What is your profile name?"
-            profile_name = gets.chomp
-            # Find user in profiles
-            # Currernt user = values
-            found_user = profiles.find {|profile| profile[0] == profile_name}
-            if found_user
-                user[:username] = found_user[0]
-                user[:income] =  found_user[1].to_f
-                user[:accounts] =  found_user[2].split("|")
-                user[:savings] =  found_user[3].split("|")
-                loggedin = true
-            else
-                puts "Profile doesn't exist."
-            end
-        end
-    end
+    #     elsif input == "login"
+    #         # open CSV file
+    #         # Search for users name
+    #         # If match found, return logged in
+    #         # Else, tell user profile does not exist & get them to log in
+    #         puts "What is your profile name?"
+    #         profile_name = gets.chomp
+    #         # Find user in profiles
+    #         # Currernt user = values
+    #         found_user = profiles.find {|profile| profile[0] == profile_name}
+    #         if found_user
+    #             user[:username] = found_user[0]
+    #             user[:income] =  found_user[1].to_f
+    #             user[:accounts] =  found_user[2].split("|")
+    #             user[:savings] =  found_user[3].split("|")
+    #             loggedin = true
+    #         else
+    #             puts "Profile doesn't exist."
+    #         end
+    #     end
+    # end
     p user
     puts "What would you like to do now?" 
     puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
@@ -68,7 +68,7 @@ until leave
     puts "4. Savings projection calculator"
     puts "5. Export to graph"
     
-    input = gets.chomp.downcase
+    input = gets.chomp.to_i
     case input
     when 1
         puts "1. Set up income and expense accounts"
@@ -76,9 +76,10 @@ until leave
         puts "You can add your own custom accounts as well."
         puts "How much would you like to deposit to your income account? This is where you will deposit any earnings such as salary."
         salary = gets.chomp.to_f
-        puts "Awesome #{account_name}, you just contributed $#{salary} to your income account."
+        puts "Awesome #{user[:username]}, you just contributed $#{salary} to your income account."
+        user[:income] += salary
+        user[:income] << salary
         puts "Your income account is at $#{user[:income]}"
-        user[:income] =+ salary
     
     when 2
         puts "Please enter your expenses"
@@ -104,7 +105,7 @@ until leave
         separator()
         puts "\n "
         puts "If you are saving for a specific amount of money, this calculator will assist you in determining how long it will take you to reach your goal"
-        until input == " "
+        until input == "done"
             run_calculator = savings_projection_calculator()
             puts "If you are finished, enter done. If you want to run the calculator again, press enter to continue"
             input = gets.chomp 
@@ -131,8 +132,6 @@ p user
 
 # how to find user
 # index = user[:username].find_index {|element| element[:name] == input}
-
-
 
 # pushing users hash with savings goal and balance to the user hash. Pushing into the key of the savings hash called savings.
 user[:savings] << {savings_goal: "Holiday", balance: 500}
