@@ -84,7 +84,6 @@ until leave
                 puts "Awesome #{user[:username]}, you just contributed $#{salary} to your income account."
                 user[:income] += salary
                 puts "Your income account balance is: $#{user[:income]}"
-            
             elsif input == "b"
                 puts "Create custom accounts here."
                 puts "For example, you could create an account called food, bills or health."
@@ -96,11 +95,22 @@ until leave
                 p user[:accounts]
             elsif input == "c"
                 puts "You have the following accounts:"
-               
+                # Iterate over accounts
+                # Return accounts in the following format
+                # Account name : custom_account
+                # Expenditure total:  
+                puts user[:accounts]
             end
         end
     when 2
-        puts "Please enter your expenses"
+        puts "You have the following accounts:"
+        # List accounts
+        puts user[:accounts]
+        puts "What account would you like to enter expenses towards?"
+        input = gets.chomp.downcase
+        index = user[:accounts].find_index {|element| element[:custom_account] == input}
+        user[:accounts][index][:income] -= 50
+        p result
     
     when 3
         until input == "d"
@@ -115,16 +125,18 @@ until leave
             if input == "a"
                 puts "Set up a new savings goal"
                 run_savings_goal = new_savings_goal()
+                p user[:savings]
             elsif input == "b"
                 puts "View savings goal"
+                # Print savings accounts and current values to screen
             elsif input == "c"
                 puts "Contribute to savings"
+                # Find account
+                # Create index (empty variable) then locates list of users & the savings key. Calls the find_index method on the hash. 
+                # index = user[:savings].find_index {|element| element[:savings_goal] == input}
+                # user[:savings][index][:balance] -= 50
+                # p result
             end
-        # Find account
-        # Create index (empty variable) then locates list of users & the savings key. Calls the find_index method on the hash. 
-        # index = user[:savings].find_index {|element| element[:savings_goal] == input}
-        # user[:savings][index][:balance] -= 50
-        # p result
         end
     when 4
         separator()
