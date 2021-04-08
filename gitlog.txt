@@ -1,3 +1,33 @@
+commit f6777fc841061666bb015f638df7c00f51a46344
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Wed Apr 7 21:00:55 2021 +1000
+
+    Add savings goal method and install TTY gem
+
+commit 67823cf7274afb13ca40719382410fcf93d17bfb
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Wed Apr 7 19:01:08 2021 +1000
+
+    Write to CSV file set up.
+
+commit e887423831617efafcafeaf257fcd898484fb2ef
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Wed Apr 7 09:25:32 2021 +1000
+
+    Commit all files, begin loop to prompt user to signup and push data to CSV.
+
+commit f53007d962014c44a60a8b5950dd197b04105084
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Tue Apr 6 16:39:58 2021 +1000
+
+    modifications to code and set-up of accounts, push custom user info into hash
+
+commit ef89f1300a4ed0a58b7ef6a714c854d582038034
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Tue Apr 6 14:28:04 2021 +1000
+
+    Set up savings account menu options and conditional statements
+
 commit 75330ad2fe8c0f4cd1ac02ae8e2c1d71bba856c3
 Author: kate.anisha <kate.anisha@icloud.com>
 Date:   Sun Apr 4 19:00:10 2021 +1000

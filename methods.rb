@@ -1,28 +1,30 @@
-
 def new_savings_goal
     user = {
         username: "", income: 0, accounts: [], savings: [],
         }
     puts "Create a custom savings goal. The savings goal can be anything you like for example deposit on a house, a holiday or a car."
-    savings_goal_name = ""
+    
+    puts "Do you want to create a savings goal? (yes/no). If you choose no, you will return to the previous menu."
+    savings_goal_name = " "
     input = gets.chomp.downcase
     if input == "yes" 
-        puts "Do you want to create a savings goal? (yes/no)"
-
         puts "What is the name of your savings goal?"
         savings_goal_name = gets.chomp
-
         # Get users savings goal amount
         puts "Now enter an amount you'd like to contribute. Simply enter 0 if you do not want to contribute any funds just yet. You can also come back to this at a later stage."
         savings_contribution = gets.chomp.to_f
         user[:savings] << savings_goal_name
         user[:savings] << savings_contribution
+        p user[:savings]
     elsif input == "no"
-        
+        #return user to main menu
     end
-    finished = true
+    
 end
-new_savings_goal()
+
+def contribute_to_savings_goal
+
+end
 
 =begin
 def savings_projection_calculator()

@@ -1,6 +1,8 @@
 require 'csv'
 # require 'colorize'
 require_relative 'methods'
+profiles = CSV.open("profiles.csv", "r").read
+p profiles
 
 leave = false
 user = {
@@ -14,31 +16,40 @@ until leave
         puts "Please choose from the following options:"
         puts "> New profile"
         puts "> Login"
-        input = gets.chomp.downcase
+        input = "new profile"
+        # input = gets.chomp.downcase
         if input == "new profile"
-            puts "Please enter a name. You will use this name to access your accounts."
-            profile_name = gets.chomp
-            user[:username] = profile_name 
-            CSV.open("profiles.csv", "a") { |csv| csv << [user[:username]]}
+            profile_is_available = false
+            until profile_is_available
+                puts "Please enter a name. You will use this name to access your accounts."
+                profile_name = gets.chomp
+                if profiles.select {|profile| profile[0] == profile_name} != []
+                    puts "that username is taken"
+                else 
+                    user[:username] = profile_name 
+                    user[:income]
+                    profiles.push([user[:username],0,[],[]])
+                    profile_is_available = true
+                    loggedin = true
+                end
+            end
+            # If profile name already exists
+            # request user choose another name
+            
         elsif input == "login"
-            # Check CSV  input
-            # Log user in
+            #open CSV file
+            # Search for users name
+            # If match found, return logged in
+            # Else, tell user profile does not exist & get them to log in
             puts "What is your profile name?"
             profile_name = gets.chomp
-            CSV.open("users.csv", "a+")  do |csv|
-                csv.each do |find_profile|
-                    if find_profile[0] == profile_name
-                        puts "You are logged in"
-                    end
+            CSV.foreach("profiles.csv", "r") do |csv|
+                if profile_name == user[:username]
+                    return loggedin = true
                 end
-                return false
-            end
+            end  
         end
     end
-    loggedin = true
-end
-
-
     puts "What would you like to do now?" 
     puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
     puts "1. Set up income and expense accounts"
@@ -49,8 +60,6 @@ end
     
     input = gets.chomp.downcase
     case input
-    when "exit"
-        leave = true
     when 1
         puts "1. Set up income and expense accounts"
         puts "To begin, we have set you up with an income account."
@@ -60,7 +69,7 @@ end
         puts "Awesome #{account_name}, you just contributed $#{salary} to your income account."
         puts "Your income account is at $#{user[:income]}"
         user[:income] =+ salary
-
+    
     when 2
         puts "Please enter your expenses"
     
@@ -72,8 +81,12 @@ end
         puts "2. View savings"
         puts "3. Contribute to savings"
         puts "4. Main Menu"
-
-      
+    
+        # Find account
+        # Create index (empty variable) then locates list of users & the savings key. Calls the find_index method on the hash. 
+        index = user[:savings].find_index {|element| element[:savings_goal] == input}
+        user[:savings][index][:balance] -= 50
+        # p result
         
     when 4
         separator()
@@ -89,7 +102,12 @@ end
         
     when 5
         puts "Export to graph"
+    when "exit"
+        leave = true
     end
+end
+
+
 
 
 
@@ -99,9 +117,6 @@ end
 
 p user
 # user[:savings] << {savings_goal: "Car", balance: 3000}
-
-# Make hash with layout (name and balance) 
-# Value of name will be what they type in
 
 
 # how to find user
@@ -128,4 +143,6 @@ p user
 
 =end
 
-   
+# find the user's old data in profiles
+# replace the user's old data with the new data
+# overwrite the old csv, with the new profiles_array
