@@ -16,18 +16,20 @@ until leave
         puts "Please choose from the following options:"
         puts "> New profile"
         puts "> Login"
-        input = "new profile"
-        # input = gets.chomp.downcase
+        # input = "new profile"
+        input = gets.chomp.downcase
         if input == "new profile"
             profile_is_available = false
             until profile_is_available
                 puts "Please enter a name. You will use this name to access your accounts."
                 profile_name = gets.chomp
-                if profiles.select {|profile| profile[0] == profile_name} != []
+                if profiles.find {|profile| profile[0] == profile_name}
                     puts "that username is taken"
                 else 
                     user[:username] = profile_name 
-                    user[:income]
+                    user[:income] = 0 
+                    user[:accounts] = [] 
+                    user[:savings] = [] 
                     profiles.push([user[:username],0,[],[]])
                     profile_is_available = true
                     loggedin = true
@@ -37,19 +39,27 @@ until leave
             # request user choose another name
             
         elsif input == "login"
-            #open CSV file
+            # open CSV file
             # Search for users name
             # If match found, return logged in
             # Else, tell user profile does not exist & get them to log in
             puts "What is your profile name?"
             profile_name = gets.chomp
-            CSV.foreach("profiles.csv", "r") do |csv|
-                if profile_name == user[:username]
-                    return loggedin = true
-                end
-            end  
+            # Find user in profiles
+            # Currernt user = values
+            found_user = profiles.find {|profile| profile[0] == profile_name}
+            if found_user
+                user[:username] = found_user[0]
+                user[:income] =  found_user[1].to_f
+                user[:accounts] =  found_user[2].split("|")
+                user[:savings] =  found_user[3].split("|")
+                loggedin = true
+            else
+                puts "Profile doesn't exist."
+            end
         end
     end
+    p user
     puts "What would you like to do now?" 
     puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
     puts "1. Set up income and expense accounts"
