@@ -2,7 +2,7 @@ require_relative 'methods'
 require 'csv'
 # Ruby Gems used in file
 require 'colorize'
-require 'tty'
+require 'tty-pie'
 
 profiles = CSV.open("profiles.csv", "r").read
 p profiles
@@ -16,9 +16,6 @@ user = {
 until leave
     loggedin = false
     until loggedin == true
-#         a = AsciiArt.new("pennyful.png")
-#   => #<AsciiArt:0x007fa889cbacf8 @data="...">
-#         print a.to_ascii_art(width: 50)
         puts "Welcome to Pennyful. "
         puts "Please choose from the following options:"
         puts "> New profile"
@@ -175,20 +172,21 @@ until leave
     when 5
         puts "Export to pie graph"
         data = []
-        colors = [:blue, :yellow, :green, :white, :red]
-        fills = ["*", "&", "^", "%", "$"]
-
+        
         # iterate over the user accounts
         user[:accounts].each do |account|
+            colors = [:blue, :yellow, :green, :white, :red]
+            fills = ["*", "&", "^", "%", "$"]
             p account
             # create a temp hash
             temp_hash = {}
             # store the name of the qccount as name in the temp hash
             temp_hash[:name] = account[:name]
             temp_hash[:balance] = account[:value]
-            temp_hash[color] = colors.sample
-            temp_hash[fills] = fills.sample
-            # store the balance as value in the temp hash
+            p account
+            temp_hash[:color] = colors[0]..[4].sample
+            # temp_hash[:fills] = fills[].sample
+            p account
             # store the color as a random color in the temp hash
             # store the fill as a random fill in the temp hash
         end
