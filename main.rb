@@ -61,7 +61,7 @@ until leave
                 accounts =  found_user[2].split("|")
                 accounts.each do |account|
                     acc = account.split("^")
-                    user[:accounts].push({name: acc[0], balance:acc[1].to_f})
+                    user[:accounts].push({name:acc[0], balance:acc[1].to_f})
                 end
                 puts user[:accounts]
                 user[:savings] = found_user[3].split("|")
@@ -173,9 +173,25 @@ until leave
         end
         
     when 5
-        puts "Export to graph"
-        data = user[:accounts].push({name: acc[0], balance:acc[1].to_f})
-        pie_chart = TTY::Pie.new(data: data, radius: 5)
+        puts "Export to pie graph"
+        data = []
+        colors = [:blue, :yellow, :green, :white, :red]
+        fills = ["*", "&", "^", "%", "$"]
+        user.each_key do |pie|
+            data << {name: pie["name"], balance: pie["value"]}
+            p data
+        end
+        # iterate over the user accounts
+            # create a temp hash
+            # store the name as name in the temp hash
+            # store the balance as value in the temp hash
+            # store the color as a random color in the temp hash
+            # store the fill as a random fill in the temp hash
+            # push the temp hash to data
+            # Assign key to hash 
+        # p data
+        # pie_chart = TTY::Pie.new(data: data, radius: 5)
+        # print pie_chart
         
     when "exit"
         leave = true
