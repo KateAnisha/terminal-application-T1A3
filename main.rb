@@ -1,22 +1,24 @@
 require_relative 'methods'
-require 'csv'
-# Ruby Gems used in file
-require 'colorize'
-require 'tty-pie'
-require 'ruby_figlet'
-
+begin
+    require 'csv'
+    # Ruby Gems used in file
+    require 'colorize'
+    require 'tty-pie'
+    require 'ruby_figlet'
+rescue
+    puts "Please install required gems by running bundle install"
+    exit
+end
 
 profiles = CSV.open("profiles.csv", "r").read
 p profiles
 
 leave = false
-user = {
-    username: "user1", income: 500, accounts: [{name: "food", balance: 0}, {name: "bills", balance: 44.00}], savings: [],
-    }
+user = {}
 
 # Begin login/Profile creation
+loggedin = false
 until leave
-    loggedin = false
     until loggedin == true
         puts "Welcome to Pennyful. "
         puts "Please choose from the following options:"
@@ -58,6 +60,7 @@ until leave
                 user[:username] = found_user[0]
                 user[:income] =  found_user[1].to_f
                 accounts =  found_user[2].split("|")
+                user[:accounts] = []
                 accounts.each do |account|
                     acc = account.split("^")
                     user[:accounts].push({name:acc[0], balance:acc[1].to_f})
@@ -172,7 +175,7 @@ until leave
         end
         
     when 5
-        puts "To export to pie graph, press enter.."
+
         data = []
         # iterate over the user accounts
         user[:accounts].each do |account|
@@ -191,16 +194,47 @@ until leave
             # push the temp hash to data
             data << temp_hash
         end
-        
         pie_chart = TTY::Pie.new(data: data, radius: 5)
         print pie_chart
-        
-    when "exit"
+    when 6
         leave = true
     end
 end
 
+puts profiles
 
+index = profiles.find_index { |profile| user[:username] == profile[0]}
+
+user_to_array = []
+
+user.each {|key, val| 
+    if key == :accounts
+        string = ""
+        user[:accounts].each {|hash|
+            p hash
+            hash.each { |subkey, subval| 
+                string += "#{subkey}^#{subval}|"
+            }
+        }
+        string.delete_suffix!("|")
+        user_to_array.push(string)
+    else 
+        user_to_array.push(val.to_s)
+    end
+
+}
+# p user_to_array
+# p profiles
+profiles[index] = user_to_array
+
+CSV.open("profiles.csv", "w") do |csv|
+end
+
+CSV.open("profiles.csv", "a") do |csv|
+    profiles.each { |p|
+        csv << [p[0], p[1], p[2], p[3]]
+    }
+end
 
 
 
