@@ -105,16 +105,20 @@ until leave
                 # Pushing users hash with savings goal and balance to the user hash. Pushing into the key of the savings hash called savings.
                 puts "Enter an account name"
                 custom_account = gets.chomp.downcase
-                custom_account = {name: "", balance: 0}
+                custom_account = {name: custom_account, balance: 0}
                 user[:accounts] << custom_account 
-                
+                # if user [:accounts].count > 5
+                #     puts "Sorry you are only allowed 5 accounts"
+                #     user[:accounts].delete_at(5)
+                # end
+            
             elsif input == "c"
                 puts "You have the following accounts:"
                 # Iterate over accounts
                 # Return accounts in the following format
                 # Account name : custom_account
                 # Expenditure total:  
-                puts user[:accounts]
+                
             end
         end
     when 2
