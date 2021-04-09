@@ -2,9 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorize (0.8.1)
-    figlet (1.1.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
+    ruby_figlet (0.6.1)
     tty-color (0.6.0)
     tty-cursor (0.7.1)
     tty-pie (0.4.0)
@@ -16,7 +16,7 @@ PLATFORMS
 
 DEPENDENCIES
   colorize (~> 0.8.1)
-  figlet (~> 1.1)
+  ruby_figlet (~> 0.6.1)
   tty-pie (~> 0.4.0)
 
 BUNDLED WITH

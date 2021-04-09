@@ -3,6 +3,8 @@ require 'csv'
 # Ruby Gems used in file
 require 'colorize'
 require 'tty-pie'
+require 'ruby_figlet'
+
 
 profiles = CSV.open("profiles.csv", "r").read
 p profiles
@@ -170,32 +172,28 @@ until leave
         end
         
     when 5
-        puts "Export to pie graph"
+        puts "To export to pie graph, press enter.."
         data = []
-        
         # iterate over the user accounts
         user[:accounts].each do |account|
-            colors = [:blue, :yellow, :green, :white, :red]
+            colors = [:blue, :yellow, :green, :white, :red, :bright_cyan, :bright_magenta]
             fills = ["*", "&", "^", "%", "$"]
-            p account
             # create a temp hash
             temp_hash = {}
-            # store the name of the qccount as name in the temp hash
+            # store the name of the account as name in the temp hash
             temp_hash[:name] = account[:name]
-            temp_hash[:balance] = account[:value]
-            p account
-            temp_hash[:color] = colors[0]..[4].sample
-            # temp_hash[:fills] = fills[].sample
-            p account
+            temp_hash[:value] = account[:balance]
             # store the color as a random color in the temp hash
+            temp_hash[:color] = colors.slice!(rand(0..colors.length-1))
             # store the fill as a random fill in the temp hash
+            temp_hash[:fill] = fills.slice!(rand(0..fills.length-1))
+            # temp_hash[:fills] = fills[].sample
+            # push the temp hash to data
+            data << temp_hash
         end
-        # Assign key to hash 
-        # push the temp hash to data
-        gets
-        # p data
-        # pie_chart = TTY::Pie.new(data: data, radius: 5)
-        # print pie_chart
+        
+        pie_chart = TTY::Pie.new(data: data, radius: 5)
+        print pie_chart
         
     when "exit"
         leave = true
