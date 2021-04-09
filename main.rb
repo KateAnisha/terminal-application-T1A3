@@ -36,9 +36,8 @@ until leave
                 else 
                     user[:username] = profile_name 
                     user[:income] = 0 
-                    user[:accounts] = [] 
-                    user[:savings] = [] 
-                    profiles.push([user[:username],0,[],[]])
+                    user[:accounts] = []
+                    profiles.push([user[:username],0,""])
                     profile_is_available = true
                     loggedin = true
                 end
@@ -66,7 +65,7 @@ until leave
                     user[:accounts].push({name:acc[0], balance:acc[1].to_f})
                 end
                 puts user[:accounts]
-                user[:savings] = found_user[3].split("|")
+                # user[:savings] = found_user[3].split("|")
                 puts user[:accounts]
                 loggedin = true
             else
@@ -78,10 +77,10 @@ until leave
     puts "What would you like to do now?" 
     puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
     puts "1. Set up income and expense accounts"
-    puts "2. Record expenditure"
-    puts "3. Manage savings"
-    puts "4. Savings projection calculator"
-    puts "5. Export to graph"
+    puts "2. Record expenses"
+    puts "3. Savings projection calculator"
+    puts "4. Export to graph"
+    puts "5. Exit application"
     
     input = gets.chomp.to_i
     case input
@@ -106,8 +105,9 @@ until leave
                 # Pushing users hash with savings goal and balance to the user hash. Pushing into the key of the savings hash called savings.
                 puts "Enter an account name"
                 custom_account = gets.chomp.downcase
-                user[:accounts] << custom_account
-                p user[:accounts]
+                custom_account = {name: "", balance: 0}
+                user[:accounts] << custom_account 
+                
             elsif input == "c"
                 puts "You have the following accounts:"
                 # Iterate over accounts
@@ -120,49 +120,9 @@ until leave
     when 2
         puts "You have the following accounts:"
         # List accounts
-        if user[:accounts].empty? == false
-            puts user[:accounts]
-            puts "What account would you like to enter expenses towards?"
-            input = gets.chomp.downcase
-            puts "How much did you spend?"
-            expense_amount = gets.chomp.to_f
-            index = user[:accounts].find_index {|element| element[:name] == input}
-            user[:income] -= expense_amount # input from user
-            user[:accounts][index][:balance] += expense_amount
-            p user
-            gets
-        else
-            puts "You don't have any accounts to add expenses to"
-            puts "Press enter to return to main menu..."
-            gets.chomp
-        end
+        list_accounts(user)
+        
     when 3
-        until input == "d"
-        puts "Here you can manage your Pennyful! Savings."
-        puts "What would you like to do?" 
-        puts "Please enter the item number that corresponds with the menu option. (a - d)"
-        puts "a. New Savings Goal"
-        puts "b. View savings"
-        puts "c. Contribute to savings"
-        puts "d. Main Menu"
-        input = gets.chomp.downcase
-            if input == "a"
-                puts "Set up a new savings goal"
-                run_savings_goal = new_savings_goal()
-                p user[:savings]
-            elsif input == "b"
-                puts "View savings goal"
-                # Print savings accounts and current values to screen
-            elsif input == "c"
-                puts "Contribute to savings"
-                # Find account
-                # Create index (empty variable) then locates list of users & the savings key. Calls the find_index method on the hash. 
-                # index = user[:savings].find_index {|element| element[:savings_goal] == input}
-                # user[:savings][index][:balance] -= 50
-                # p result
-            end
-        end
-    when 4
         separator()
         puts "\n \t \t \t Savings calculator"
         separator()
@@ -174,7 +134,7 @@ until leave
             input = gets.chomp 
         end
         
-    when 5
+    when 4
 
         data = []
         # iterate over the user accounts
@@ -196,7 +156,9 @@ until leave
         end
         pie_chart = TTY::Pie.new(data: data, radius: 5)
         print pie_chart
-    when 6
+        puts "Press enter to contine"
+        gets.chomp
+    when 5
         leave = true
     end
 end
@@ -207,6 +169,7 @@ index = profiles.find_index { |profile| user[:username] == profile[0]}
 
 user_to_array = []
 
+p user
 user.each {|key, val| 
     if key == :accounts
         string = ""
@@ -217,6 +180,7 @@ user.each {|key, val|
             }
         }
         string.delete_suffix!("|")
+        
         user_to_array.push(string)
     else 
         user_to_array.push(val.to_s)

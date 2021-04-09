@@ -17,12 +17,23 @@ def new_savings_goal
     end
 end
 
-def contribute_to_savings_goal
-
-end
-
-def separator(character="_")
-    puts character * 76
+def list_accounts(user)
+    if user[:accounts].empty? == false
+        puts user[:accounts]
+        puts "What account would you like to enter expenses towards?"
+        input = gets.chomp.downcase
+        puts "How much did you spend?"
+        expense_amount = gets.chomp.to_f
+        index = user[:accounts].find_index {|element| element[:name] == input}
+        user[:income] -= expense_amount # input from user
+        user[:accounts][index][:balance] += expense_amount
+        p user
+        gets
+    else
+        puts "You don't have any accounts to add expenses to"
+        puts "Press enter to return to main menu..."
+        gets.chomp
+    end
 end
 
 def savings_projection_calculator()
