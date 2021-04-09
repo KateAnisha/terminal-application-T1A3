@@ -177,18 +177,24 @@ until leave
         data = []
         colors = [:blue, :yellow, :green, :white, :red]
         fills = ["*", "&", "^", "%", "$"]
-        user.each_key do |pie|
-            data << {name: pie["name"], balance: pie["value"]}
-            p data
-        end
+
         # iterate over the user accounts
+        user[:accounts].each do |account|
+            p account
             # create a temp hash
-            # store the name as name in the temp hash
+            temp_hash = {}
+            # store the name of the qccount as name in the temp hash
+            temp_hash[:name] = account[:name]
+            temp_hash[:balance] = account[:value]
+            temp_hash[color] = colors.sample
+            temp_hash[fills] = fills.sample
             # store the balance as value in the temp hash
             # store the color as a random color in the temp hash
             # store the fill as a random fill in the temp hash
-            # push the temp hash to data
-            # Assign key to hash 
+        end
+        # Assign key to hash 
+        # push the temp hash to data
+        gets
         # p data
         # pie_chart = TTY::Pie.new(data: data, radius: 5)
         # print pie_chart
