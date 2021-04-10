@@ -41,19 +41,10 @@ until leave
                     profile_is_available = true
                     loggedin = true
                 end
-            end
-            # If profile name already exists
-            # request user choose another name
-            
+            end        
         elsif input == "login"
-            # open CSV file
-            # Search for users name
-            # If match found, return logged in
-            # Else, tell user profile does not exist & get them to log in
             puts "What is your profile name?"
             profile_name = gets.chomp
-            # Find user in profiles
-            # Currernt user = values
             found_user = profiles.find {|profile| profile[0] == profile_name}
             if found_user
                 user[:username] = found_user[0]
@@ -65,7 +56,6 @@ until leave
                     user[:accounts].push({name:acc[0], balance:acc[1].to_f})
                 end
                 puts user[:accounts]
-                # user[:savings] = found_user[3].split("|")
                 puts user[:accounts]
                 loggedin = true
             else
@@ -86,40 +76,7 @@ until leave
     case input
     when 1
         until input == "d"
-            puts "What would you like to do?"
-            puts "a. Deposit to income account"
-            puts "b. Create accounts"
-            puts "c. View accounts"
-            puts "d. Back to main-menu."
-            input = gets.chomp
-            if input == "a"
-                puts "How much would you like to deposit to your income account? This is where you will deposit any earnings such as salary."
-                salary = gets.chomp.to_f
-                puts "Awesome #{user[:username]}, you just contributed $#{salary} to your income account."
-                user[:income] += salary
-                puts "Your income account balance is: $#{user[:income]}"
-            elsif input == "b"
-                puts "Create custom accounts here."
-                puts "For example, you could create an account called food, bills or health."
-                puts "Any expenditure will go against these accounts."
-                # Pushing users hash with savings goal and balance to the user hash. Pushing into the key of the savings hash called savings.
-                puts "Enter an account name"
-                custom_account = gets.chomp.downcase
-                custom_account = {name: custom_account, balance: 0}
-                user[:accounts] << custom_account 
-                # if user [:accounts].count > 5
-                #     puts "Sorry you are only allowed 5 accounts"
-                #     user[:accounts].delete_at(5)
-                # end
-            
-            elsif input == "c"
-                puts "You have the following accounts:"
-                # Iterate over accounts
-                # Return accounts in the following format
-                # Account name : custom_account
-                # Expenditure total:  
-                
-            end
+            run_accounts = account_manage(user)
         end
     when 2
         puts "You have the following accounts:"
@@ -167,13 +124,10 @@ until leave
     end
 end
 
-puts profiles
-
 index = profiles.find_index { |profile| user[:username] == profile[0]}
 
 user_to_array = []
 
-p user
 user.each {|key, val| 
     if key == :accounts
         string = ""
@@ -191,8 +145,7 @@ user.each {|key, val|
     end
 
 }
-# p user_to_array
-# p profiles
+
 profiles[index] = user_to_array
 
 CSV.open("profiles.csv", "w") do |csv|
@@ -203,37 +156,3 @@ CSV.open("profiles.csv", "a") do |csv|
         csv << [p[0], p[1], p[2], p[3]]
     }
 end
-
-
-
-=begin
-
-p user
-# user[:savings] << {savings_goal: "Car", balance: 3000}
-
-
-# how to find user
-# index = user[:username].find_index {|element| element[:name] == input}
-
-# pushing users hash with savings goal and balance to the user hash. Pushing into the key of the savings hash called savings.
-user[:savings] << {savings_goal: "Holiday", balance: 500}
-user[:savings] << {savings_goal: "House", balance: 10000}
-p user
-input = "Car"
-
-# Find account
-# Create index (empty variable) then locates list of users & the savings key. Calls the find_index method on the hash. 
-index = user[:savings].find_index {|element| element[:savings_goal] == input}
-user[:savings][index][:balance] -= 50
-# p result
-
-# # Transfer incocme to savings a/c
-# result[:balance] -= 50
-p user
-# p result
-
-=end
-
-# find the user's old data in profiles
-# replace the user's old data with the new data
-# overwrite the old csv, with the new profiles_array

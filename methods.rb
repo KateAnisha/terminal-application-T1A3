@@ -17,6 +17,33 @@ def new_savings_goal
     end
 end
 
+def account_manage(user)
+    puts "What would you like to do?"
+    puts "a. Deposit to income account"
+    puts "b. Create accounts"
+    puts "c. View accounts"
+    puts "d. Back to main-menu."
+    input = gets.chomp
+    if input == "a"
+        puts "How much would you like to deposit to your income account? This is where you will deposit any earnings such as salary."
+        salary = gets.chomp.to_f
+        puts "Awesome #{user[:username]}, you just contributed $#{salary} to your income account."
+        user[:income] += salary
+        puts "Your income account balance is: $#{user[:income]}"
+    elsif input == "b"
+        puts "Create custom accounts here."
+        puts "For example, you could create an account called food, bills or health."
+        puts "Any expenditure will go against these accounts."
+        puts "Enter an account name"
+        custom_account = gets.chomp.downcase
+        custom_account = {name: custom_account, balance: 0}
+        user[:accounts] << custom_account 
+    elsif input == "c"
+        puts "You have the following accounts:"
+        print user[:accounts]
+    end
+end
+
 def list_accounts(user)
     if user[:accounts].empty? == false
         puts user[:accounts]
