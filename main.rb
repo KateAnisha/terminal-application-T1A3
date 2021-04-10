@@ -54,16 +54,14 @@ until leave
                 accounts.each do |account|
                     acc = account.split("^")
                     user[:accounts].push({name:acc[0], balance:acc[1].to_f})
+                    p user[:accounts]
                 end
-                puts user[:accounts]
-                puts user[:accounts]
                 loggedin = true
             else
                 puts "Profile doesn't exist."
             end
         end
     end
-    p user
     puts "What would you like to do now?" 
     puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
     puts "1. Set up income and expense accounts"
@@ -76,7 +74,31 @@ until leave
     case input
     when 1
         until input == "d"
-            run_accounts = account_manage(user)
+            
+            puts "What would you like to do?"
+            puts "a. Deposit to income account"
+            puts "b. Create accounts"
+            puts "c. View accounts"
+            puts "d. Back to main-menu."
+            input = gets.chomp
+            if input == "a"
+                puts "How much would you like to deposit to your income account? This is where you will deposit any earnings such as salary."
+                salary = gets.chomp.to_f
+                puts "Awesome #{user[:username]}, you just contributed $#{salary} to your income account."
+                user[:income] += salary
+                puts "Your income account balance is: $#{user[:income]}"
+            elsif input == "b"
+                puts "Create custom accounts here."
+                puts "For example, you could create an account called food, bills or health."
+                puts "Any expenditure will go against these accounts."
+                puts "Enter an account name"
+                custom_account = gets.chomp.downcase
+                custom_account = {name: custom_account, balance: 0}
+                user[:accounts] << custom_account 
+            elsif input == "c"
+                puts "You have the following accounts:"
+                p user[:accounts]
+            end
         end
     when 2
         puts "You have the following accounts:"
@@ -96,7 +118,6 @@ until leave
         end
         
     when 4
-
         data = []
         # iterate over the user accounts
         user[:accounts].each do |account|
@@ -125,9 +146,7 @@ until leave
 end
 
 index = profiles.find_index { |profile| user[:username] == profile[0]}
-
 user_to_array = []
-
 user.each {|key, val| 
     if key == :accounts
         string = ""
@@ -143,7 +162,6 @@ user.each {|key, val|
     else 
         user_to_array.push(val.to_s)
     end
-
 }
 
 profiles[index] = user_to_array
