@@ -1,4 +1,5 @@
 require_relative 'methods'
+
 begin
     require 'csv'
     # Ruby Gems used in file
@@ -21,8 +22,8 @@ until leave
     until loggedin == true
         puts RubyFiglet::Figlet.new("Welcome to Pennyful").to_s.colorize(:light_blue)
         puts "Please choose from the following options:"
-        puts "> New profile"
-        puts "> Login"
+        puts "> New profile".colorize(:green)
+        puts "> Login".colorize(:green)
         input = gets.chomp.downcase
         if input == "new profile"
             profile_is_available = false
@@ -71,6 +72,7 @@ until leave
     case input
     when 1
         until input == "d"
+            puts RubyFiglet::Figlet.new("Manage Accounts").to_s.colorize(:light_blue)
             puts "What would you like to do?"
             puts "a. Deposit to income account"
             puts "b. Create accounts"
@@ -109,6 +111,7 @@ until leave
         end
         
     when 4
+        puts RubyFiglet::Figlet.new("Pie Chart").to_s.colorize(:light_blue)
         data = []
         # iterate over the user accounts
         user[:accounts].each do |account|
