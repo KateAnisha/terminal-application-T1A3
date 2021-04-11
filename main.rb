@@ -10,7 +10,6 @@ rescue
     exit
 end
 
-
 profiles = CSV.open("profiles.csv", "r").read
 
 leave = false
@@ -105,7 +104,7 @@ until leave
         puts "If you are saving for a specific amount of money, this calculator will assist you in determining how long it will take you to reach your goal"
         until input == "done"
             run_calculator = savings_projection_calculator()
-            puts "If you are finished, enter done. If you want to run the calculator again, press enter to continue"
+            puts "If you are finished, enter done. If you want to run the calculator again, press enter to continue".colorize(:red)
             input = gets.chomp 
         end
         

@@ -1,0 +1,167 @@
+commit 00cb6e0bbbc3dfac0c760d1dccf895bb796200c4
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sun Apr 11 20:47:29 2021 +1000
+
+    Incorporate gems into terminal application.
+
+commit a7ba25bef5af64e4777cad556f9dd644ada64e34
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sat Apr 10 16:04:32 2021 +1000
+
+    Refactoring code
+
+commit 36421899b131c6ccd7eb6e14d43cd755041722a1
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sat Apr 10 15:25:07 2021 +1000
+
+    Re-factor code and implement functions.
+
+commit 2c1857af52fd3124a74583f9acc845a40bd72170
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 22:10:02 2021 +1000
+
+    Further testing and debugging undertaken.
+
+commit c5e59c68a31a67e15b90ca617e0e4949bdd95629
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 21:48:53 2021 +1000
+
+    Fixing errors and debugging
+
+commit 14b7bfa6a750643387a150eb06b92121aeab4f8a
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 17:27:45 2021 +1000
+
+    Push updated users and balances to CSV
+
+commit aecb14182b9a46325bd86c76912c98c82981f6f0
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 16:44:13 2021 +1000
+
+    Finalised MVP, data successful displays as a pie graph
+
+commit f7850ce9a8618f4441533314ea2277eb1f5011e2
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 15:56:53 2021 +1000
+
+    Set up script file and modifications to MVP.
+
+commit 036e2b18106d282a578f60828e1a2823f9f372b0
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 12:48:38 2021 +1000
+
+    Set up temporary hash to store data to form graph.
+
+commit e85136c77cf4723cd01d1a80b538a6a8f60ac859
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 11:58:40 2021 +1000
+
+    midifications to main file to get pie chart working
+
+commit 18309e0fdf9a98835d8e089f7cab597ea8d4ebef
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 09:50:57 2021 +1000
+
+    gem cleanup
+
+commit 2cbba7a7e58d6eca7a419dc27b1021287812ed19
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 09:47:47 2021 +1000
+
+    Bundled gems
+
+commit fa2ec2feb6bb696e748061fa654c5ee057e4a10f
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 9 09:43:40 2021 +1000
+
+    Formatting files
+
+commit 657d126c3732429f07267b330a9e3fc029ebfb74
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Thu Apr 8 16:13:14 2021 +1000
+
+    modifying MVP
+
+commit 6bfc02557d557a76d12bbfc9cd437d1d551495ac
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Thu Apr 8 15:47:31 2021 +1000
+
+    Accounts section set up, modify savings section.
+
+commit 5cb4fc6cee36763d1987c60fa823e514b49c1ce6
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Thu Apr 8 14:28:09 2021 +1000
+
+    Progress user to next part of code after they have logged in now complete.
+
+commit 75c33ce5e66bb13acf20e3337d71f3b1494820dd
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Thu Apr 8 14:09:35 2021 +1000
+
+    Log in functionality finalised.
+
+commit 7bd00b0d44858126af11c95aee4f0d04ac0439da
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Thu Apr 8 13:40:41 2021 +1000
+
+    Update login functionality and progress to next part of application
+
+commit f6777fc841061666bb015f638df7c00f51a46344
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Wed Apr 7 21:00:55 2021 +1000
+
+    Add savings goal method and install TTY gem
+
+commit 67823cf7274afb13ca40719382410fcf93d17bfb
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Wed Apr 7 19:01:08 2021 +1000
+
+    Write to CSV file set up.
+
+commit e887423831617efafcafeaf257fcd898484fb2ef
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Wed Apr 7 09:25:32 2021 +1000
+
+    Commit all files, begin loop to prompt user to signup and push data to CSV.
+
+commit f53007d962014c44a60a8b5950dd197b04105084
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Tue Apr 6 16:39:58 2021 +1000
+
+    modifications to code and set-up of accounts, push custom user info into hash
+
+commit ef89f1300a4ed0a58b7ef6a714c854d582038034
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Tue Apr 6 14:28:04 2021 +1000
+
+    Set up savings account menu options and conditional statements
+
+commit 75330ad2fe8c0f4cd1ac02ae8e2c1d71bba856c3
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sun Apr 4 19:00:10 2021 +1000
+
+    set up savings method
+
+commit 523a9b0ba36b2aec98709c86d3fabbe7f47f4b98
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sun Apr 4 14:14:23 2021 +1000
+
+    modify main.rb and set up custom categories classes
+
+commit 2a1d3b62491410a2f7f668d06f78793a5ff1e528
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sat Apr 3 20:00:12 2021 +1000
+
+    modifications to main menu and set up sub-menu
+
+commit 9f8a314cf9556549c94d74077a767c7d9d44db37
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Sat Apr 3 11:36:14 2021 +1000
+
+    install gem file CSV
+
+commit 6469ac118ef00f9aefa6e2ad3a63f7af481ec3e2
+Author: kate.anisha <kate.anisha@icloud.com>
+Date:   Fri Apr 2 17:35:35 2021 +1000
+
+    Create main Ruby file and begin assignment
