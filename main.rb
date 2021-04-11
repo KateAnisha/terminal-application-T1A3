@@ -1,7 +1,7 @@
 require_relative 'methods'
-
+require_relative 'arguments'
 begin
-    require 'csv'
+require 'csv'
     # Ruby Gems used in file
     require 'colorize'
     require 'tty-pie'
