@@ -28,10 +28,10 @@ def list_accounts(user)
         index = user[:accounts].find_index {|element| element[:name] == input}
         user[:income] -= expense_amount # input from user
         user[:accounts][index][:balance] += expense_amount
-        p user
-        gets
+        puts "Press enter to return to main menu..."
+        gets.chomp
     else
-        puts "You don't have any accounts to add expenses to"
+        puts "You don't have any accounts to add expenses to".colorize(:red)
         puts "Press enter to return to main menu..."
         gets.chomp
     end

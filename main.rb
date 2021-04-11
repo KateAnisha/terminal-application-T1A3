@@ -10,8 +10,8 @@ rescue
     exit
 end
 
+
 profiles = CSV.open("profiles.csv", "r").read
-p profiles
 
 leave = false
 user = {}
@@ -20,11 +20,10 @@ user = {}
 loggedin = false
 until leave
     until loggedin == true
-        puts "Welcome to Pennyful. "
+        puts RubyFiglet::Figlet.new("Welcome to Pennyful").to_s.colorize(:light_blue)
         puts "Please choose from the following options:"
         puts "> New profile"
         puts "> Login"
-        # input = "new profile"
         input = gets.chomp.downcase
         if input == "new profile"
             profile_is_available = false
@@ -32,7 +31,7 @@ until leave
                 puts "Please enter a name. You will use this name to access your accounts."
                 profile_name = gets.chomp
                 if profiles.find {|profile| profile[0] == profile_name}
-                    puts "that username is taken"
+                    puts "Sorry! that username is taken".colorize(:red)
                 else 
                     user[:username] = profile_name 
                     user[:income] = 0 
@@ -54,11 +53,10 @@ until leave
                 accounts.each do |account|
                     acc = account.split("^")
                     user[:accounts].push({name:acc[0], balance:acc[1].to_f})
-                    p user[:accounts]
                 end
                 loggedin = true
             else
-                puts "Profile doesn't exist."
+                puts "Profile doesn't exist.".colorize(:red)
             end
         end
     end
@@ -74,7 +72,6 @@ until leave
     case input
     when 1
         until input == "d"
-            
             puts "What would you like to do?"
             puts "a. Deposit to income account"
             puts "b. Create accounts"
@@ -97,19 +94,14 @@ until leave
                 user[:accounts] << custom_account 
             elsif input == "c"
                 puts "You have the following accounts:"
-                p user[:accounts]
+                print user[:accounts]
             end
         end
     when 2
         puts "You have the following accounts:"
-        # List accounts
         list_accounts(user)
-        
     when 3
-        separator()
-        puts "\n \t \t \t Savings calculator"
-        separator()
-        puts "\n "
+        puts RubyFiglet::Figlet.new("Savings Calculator").to_s.colorize(:light_blue)
         puts "If you are saving for a specific amount of money, this calculator will assist you in determining how long it will take you to reach your goal"
         until input == "done"
             run_calculator = savings_projection_calculator()
@@ -136,6 +128,7 @@ until leave
             # push the temp hash to data
             data << temp_hash
         end
+        # Run pie chart using TTY Pie 
         pie_chart = TTY::Pie.new(data: data, radius: 5)
         print pie_chart
         puts "Press enter to contine"
@@ -145,6 +138,7 @@ until leave
     end
 end
 
+# Update CSV
 index = profiles.find_index { |profile| user[:username] == profile[0]}
 user_to_array = []
 user.each {|key, val| 
