@@ -16,8 +16,6 @@ def new_savings_goal
     end
 end
 
-
-
 def list_accounts(user)
     if user[:accounts].empty? == false
         puts user[:accounts]
@@ -54,6 +52,10 @@ def savings_projection_calculator()
         goal_duration = savings_goal / contribution_amount
         puts "It will take you #{goal_duration} months to save $#{savings_goal}"
     end
+end
+
+def separator(character="-")
+    puts character * 80
 end
 
 

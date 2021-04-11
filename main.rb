@@ -20,7 +20,9 @@ user = {}
 loggedin = false
 until leave
     until loggedin == true
+        separator()
         puts RubyFiglet::Figlet.new("Welcome to Pennyful").to_s.colorize(:light_blue)
+        separator()
         puts "Please choose from the following options:"
         puts "> New profile".colorize(:green)
         puts "> Login".colorize(:green)
@@ -40,7 +42,8 @@ until leave
                     profile_is_available = true
                     loggedin = true
                 end
-            end        
+            end     
+        # Login section   
         elsif input == "login"
             puts "What is your profile name?"
             profile_name = gets.chomp
@@ -60,6 +63,7 @@ until leave
             end
         end
     end
+    # Main menu of program
     puts "What would you like to do now?" 
     puts "Please enter the item number that corresponds with the menu option. (1 - 5)"
     puts "1. Set up income and expense accounts"
@@ -71,8 +75,12 @@ until leave
     input = gets.chomp.to_i
     case input
     when 1
+        # Manage accounts section
         until input == "d"
+            separator()
             puts RubyFiglet::Figlet.new("Manage Accounts").to_s.colorize(:light_blue)
+            separator()
+            # Sub-menu
             puts "What would you like to do?"
             puts "a. Deposit to income account"
             puts "b. Create accounts"
@@ -99,7 +107,9 @@ until leave
             end
         end
     when 2
+        # Record expenses
         puts "You have the following accounts:"
+        # Run record expenses function
         list_accounts(user)
     when 3
         puts RubyFiglet::Figlet.new("Savings Calculator").to_s.colorize(:light_blue)
@@ -111,6 +121,7 @@ until leave
         end
         
     when 4
+        # Output accounts to pie chart
         puts RubyFiglet::Figlet.new("Pie Chart").to_s.colorize(:light_blue)
         data = []
         # iterate over the user accounts
